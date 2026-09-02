@@ -1,0 +1,1054 @@
+/* =================================
+   BASIC RESET
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #21132d,
+            #5d315f,
+            #c06c84
+        );
+
+    color: white;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+/* =================================
+   WELCOME SCREEN
+================================= */
+
+.welcome {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 20px;
+
+    position: relative;
+    z-index: 2;
+
+    opacity: 1;
+
+    transform: scale(1);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.welcome.hide {
+    opacity: 0;
+    transform: scale(1.15);
+    pointer-events: none;
+}
+
+
+/* =================================
+   TEXT
+================================= */
+
+.small-text {
+    font-size: 18px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 25px;
+
+    animation: softGlow 2.5s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+    opacity: 0.85;
+}
+
+
+/* =================================
+   BUTTONS
+================================= */
+
+button {
+    border: none;
+
+    padding: 16px 30px;
+
+    border-radius: 50px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background: white;
+    color: #8e4162;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.3);
+
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+
+/* =================================
+   OPEN BUTTON
+================================= */
+
+#openBtn {
+    position: relative;
+
+    animation:
+        buttonPulse 2s ease-in-out infinite;
+
+    overflow: hidden;
+}
+
+#openBtn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 60%;
+    height: 100%;
+
+    background: rgba(255, 255, 255, 0.5);
+
+    transform: skewX(-25deg);
+
+    animation: buttonShine 3s infinite;
+}
+
+
+/* =================================
+   BUTTON ANIMATIONS
+================================= */
+
+@keyframes buttonPulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+@keyframes buttonShine {
+
+    0% {
+        left: -100%;
+    }
+
+    40% {
+        left: 130%;
+    }
+
+    100% {
+        left: 130%;
+    }
+
+}
+
+
+/* =================================
+   TEXT GLOW
+================================= */
+
+@keyframes softGlow {
+
+    0% {
+        transform: scale(1);
+
+        text-shadow:
+            0 0 5px rgba(255, 255, 255, 0.2);
+    }
+
+    50% {
+        transform: scale(1.03);
+
+        text-shadow:
+            0 0 10px rgba(255, 255, 255, 0.5),
+            0 0 25px rgba(255, 150, 200, 0.5);
+    }
+
+    100% {
+        transform: scale(1);
+
+        text-shadow:
+            0 0 5px rgba(255, 255, 255, 0.2);
+    }
+
+}
+
+
+/* =================================
+   BIRTHDAY SCREEN
+================================= */
+
+.birthday-screen {
+    display: none;
+
+    height: 100vh;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 20px;
+
+    position: relative;
+    z-index: 2;
+
+    opacity: 0;
+
+    transform: scale(0.7);
+}
+
+.birthday-screen.show {
+    opacity: 1;
+    transform: scale(1);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+}
+
+.birthday-screen h2 {
+    font-size: 52px;
+
+    line-height: 1.2;
+
+    margin: 20px 0;
+
+    animation:
+        birthdayTitle 1.5s ease forwards;
+}
+
+.message {
+    font-size: 19px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+#memoriesBtn {
+    margin-top: 30px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    color: #8e4162;
+
+    animation:
+        buttonPulse 2.5s ease-in-out infinite;
+}
+
+
+/* =================================
+   BIRTHDAY TITLE ANIMATION
+================================= */
+
+@keyframes birthdayTitle {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(50px)
+            scale(0.7);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            translateY(-10px)
+            scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =================================
+   FLOATING HEARTS
+================================= */
+
+.background-effects {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.background-effects span {
+    position: absolute;
+
+    bottom: -50px;
+
+    font-size: 30px;
+
+    opacity: 0.5;
+
+    animation:
+        floatHeart 10s linear infinite;
+}
+
+.background-effects span:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    font-size: 25px;
+}
+
+.background-effects span:nth-child(2) {
+    left: 25%;
+    animation-delay: 2s;
+    font-size: 40px;
+}
+
+.background-effects span:nth-child(3) {
+    left: 40%;
+    animation-delay: 4s;
+    font-size: 20px;
+}
+
+.background-effects span:nth-child(4) {
+    left: 55%;
+    animation-delay: 1s;
+    font-size: 35px;
+}
+
+.background-effects span:nth-child(5) {
+    left: 70%;
+    animation-delay: 5s;
+    font-size: 25px;
+}
+
+.background-effects span:nth-child(6) {
+    left: 80%;
+    animation-delay: 3s;
+    font-size: 45px;
+}
+
+.background-effects span:nth-child(7) {
+    left: 90%;
+    animation-delay: 6s;
+    font-size: 30px;
+}
+
+.background-effects span:nth-child(8) {
+    left: 50%;
+    animation-delay: 7s;
+    font-size: 18px;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =================================
+   MEMORY GALLERY
+================================= */
+
+.memories-screen {
+    display: none;
+
+    min-height: 100vh;
+    max-height: 100vh;
+
+    width: 100%;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    position: relative;
+    z-index: 2;
+
+    overflow-y: auto;
+}
+
+.memories-screen h2 {
+    font-size: 44px;
+
+    margin: 10px 0 35px;
+
+    animation:
+        memoryTitle 1.5s ease forwards;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.4),
+        0 0 25px rgba(255,170,210,0.4);
+}
+
+
+/* =================================
+   MEMORY TITLE ANIMATION
+================================= */
+
+@keyframes memoryTitle {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(-30px)
+            scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =================================
+   PHOTO GALLERY
+================================= */
+
+.photo-gallery {
+    width: min(900px, 100%);
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+.photo-gallery img {
+    width: 100%;
+
+    height: 300px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    border:
+        2px solid rgba(255,255,255,0.6);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.4);
+
+    opacity: 0;
+
+    transform:
+        translateY(50px)
+        scale(0.85)
+        rotate(-3deg);
+
+    animation:
+        memoryAppear 1s ease forwards,
+        photoFloat 4s ease-in-out infinite;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+/* =================================
+   PHOTO DELAYS
+================================= */
+
+.photo-gallery img:nth-child(1) {
+    animation-delay:
+        0.2s,
+        1.5s;
+}
+
+.photo-gallery img:nth-child(2) {
+    animation-delay:
+        0.5s,
+        1.8s;
+}
+
+.photo-gallery img:nth-child(3) {
+    animation-delay:
+        0.8s,
+        2.1s;
+}
+
+.photo-gallery img:nth-child(4) {
+    animation-delay:
+        1.1s,
+        2.4s;
+}
+
+
+/* =================================
+   PHOTO APPEAR
+================================= */
+
+@keyframes memoryAppear {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(50px)
+            scale(0.85)
+            rotate(-3deg);
+    }
+
+    70% {
+        opacity: 1;
+
+        transform:
+            translateY(-8px)
+            scale(1.02)
+            rotate(1deg);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0deg);
+    }
+
+}
+
+
+/* =================================
+   PHOTO FLOAT
+================================= */
+
+@keyframes photoFloat {
+
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+
+}
+
+
+/* =================================
+   PHOTO HOVER
+================================= */
+
+.photo-gallery img:hover {
+    transform:
+        scale(1.05)
+        rotate(1deg);
+
+    box-shadow:
+        0 25px 55px rgba(0,0,0,0.55);
+}
+
+
+/* =================================
+   LETTER BUTTON
+================================= */
+
+#letterBtn {
+    position: relative;
+
+    z-index: 10;
+
+    margin-top: 30px;
+    margin-bottom: 40px;
+
+    animation:
+        buttonPulse 2.5s ease-in-out infinite;
+}
+
+
+/* =================================
+   MEMORY POPUP
+================================= */
+
+.memory-popup {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        rgba(20, 8, 30, 0.92);
+
+    backdrop-filter: blur(12px);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+
+    z-index: 100;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.5s ease;
+}
+
+.memory-popup.show {
+    display: flex;
+    opacity: 1;
+}
+
+.memory-card {
+    width: min(600px, 95%);
+
+    text-align: center;
+
+    animation:
+        popupAppear 0.6s ease forwards;
+}
+
+.memory-card img {
+    width: 100%;
+
+    max-height: 70vh;
+
+    object-fit: contain;
+
+    border-radius: 25px;
+
+    border:
+        3px solid rgba(255,255,255,0.7);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.6);
+}
+
+#popupCaption {
+    margin-top: 20px;
+
+    font-size: 20px;
+
+    line-height: 1.5;
+
+    color: white;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.4);
+}
+
+.close-memory {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    width: 45px;
+    height: 45px;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.15);
+
+    color: white;
+
+    font-size: 22px;
+
+    border:
+        1px solid rgba(255,255,255,0.4);
+
+    cursor: pointer;
+
+    z-index: 101;
+}
+
+.close-memory:hover {
+    transform: scale(1.1);
+
+    background:
+        rgba(255,255,255,0.3);
+}
+
+@keyframes popupAppear {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(0.7)
+            translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+
+}
+
+
+/* =================================
+   BIRTHDAY LETTER SCREEN
+================================= */
+
+.letter-screen {
+    display: none;
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    flex-direction: column;
+
+    justify-content: flex-start;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+    position: relative;
+
+    z-index: 2;
+
+    overflow-y: auto;
+}
+
+.letter-screen h2 {
+    font-size: 42px;
+
+    margin: 15px 0 30px;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.4);
+}
+
+
+/* =================================
+   OPEN LETTER BUTTON
+================================= */
+
+#openLetterBtn {
+    margin-top: 10px;
+
+    animation:
+        buttonPulse 2.5s ease-in-out infinite;
+}
+
+
+/* =================================
+   LETTER PAPER
+   IMPORTANT:
+   HIDDEN UNTIL .show IS ADDED
+================================= */
+
+#letterPaper {
+    display: none;
+
+    width: min(650px, 95%);
+
+    margin-top: 30px;
+
+    padding: 40px;
+
+    background:
+        rgba(255,255,255,0.96);
+
+    color: #4a2940;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.5);
+
+    text-align: left;
+
+    opacity: 0;
+}
+
+
+/* =================================
+   LETTER AFTER BUTTON CLICK
+================================= */
+
+#letterPaper.show {
+    display: block;
+
+    animation:
+        letterOpen 1s ease forwards;
+}
+
+
+/* =================================
+   LETTER CONTENT
+================================= */
+
+.letter-content {
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+.letter-content p {
+    margin-bottom: 20px;
+}
+
+
+/* =================================
+   LETTER OPEN ANIMATION
+================================= */
+
+@keyframes letterOpen {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(40px)
+            scale(0.85);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 38px;
+    }
+
+    .birthday-screen h2 {
+        font-size: 40px;
+    }
+
+    .memories-screen {
+        padding: 40px 15px;
+    }
+
+    .memories-screen h2 {
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
+
+    .photo-gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .photo-gallery img {
+        height: 320px;
+    }
+
+    .letter-screen {
+        padding:
+            40px 15px;
+    }
+
+    .letter-screen h2 {
+        font-size: 30px;
+    }
+
+    #letterPaper {
+        padding: 25px;
+    }
+
+    .letter-content {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+}/* =================================
+   FINAL SURPRISE SCREEN
+================================= */
+
+.final-screen {
+    display: none;
+
+    min-height: 100vh;
+    width: 100%;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    position: relative;
+
+    z-index: 2;
+
+    opacity: 0;
+
+    transform: scale(0.8);
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease;
+}
+
+.final-screen.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.final-screen h2 {
+    font-size: 48px;
+
+    line-height: 1.3;
+
+    margin: 20px 0;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.5),
+        0 0 30px rgba(255,170,210,0.5);
+}
+
+.final-message {
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    opacity: 0.9;
+
+    margin-bottom: 30px;
+}
+
+.final-birthday {
+    font-size: 26px;
+
+    font-weight: bold;
+
+    margin-top: 20px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .final-screen h2 {
+        font-size: 36px;
+    }
+
+    .final-message {
+        font-size: 17px;
+    }
+
+    .final-birthday {
+        font-size: 22px;
+    }
+
+}
