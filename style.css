@@ -432,23 +432,23 @@ button:hover {
     display: none;
 
     min-height: 100vh;
-    max-height: 100vh;
-
     width: 100%;
 
     flex-direction: column;
-
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     text-align: center;
 
-    padding: 50px 20px;
+    padding: 50px 20px 100px;
+
+    box-sizing: border-box;
 
     position: relative;
     z-index: 2;
 
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .memories-screen h2 {
@@ -463,7 +463,6 @@ button:hover {
         0 0 10px rgba(255,255,255,0.4),
         0 0 25px rgba(255,170,210,0.4);
 }
-
 
 /* =================================
    MEMORY TITLE ANIMATION
@@ -1026,29 +1025,420 @@ button:hover {
     margin-bottom: 30px;
 }
 
-.final-birthday {
-    font-size: 26px;
+    .final-birthday {
+        font-size: 22px;
+    }
 
-    font-weight: bold;
+} /* End of mobile section */
 
-    margin-top: 20px;
+
+/* =================================
+   REAL FIREWORKS
+   ================================= */
+
+#fireworks {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10000;
+}
+
+.firework-particle {
+    position: fixed;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 99999;
+
+    animation: fireworkExplode 1.4s ease-out forwards;
+}
+
+@keyframes fireworkExplode {
+
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(var(--x), var(--y))
+            scale(0.2);
+
+        opacity: 0;
+    }
+
+}
+
+@keyframes particleExplode {
+
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(
+            var(--x),
+            var(--y)
+        ) scale(0.2);
+        opacity: 0;
+    }
+}/* =================================
+   PRANK BOX
+   ================================= */
+
+.prank-box {
+    width: min(600px, 95%);
+    margin: 40px auto 20px;
+    padding: 30px 25px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 2px solid rgba(255, 255, 255, 0.3);
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+
+    animation:
+        prankAppear 1s ease forwards;
 }
 
 
-/* Mobile */
+.prank-box h2 {
+    margin: 15px 0;
 
-@media (max-width: 600px) {
+    font-size: 32px;
 
-    .final-screen h2 {
-        font-size: 36px;
+    animation:
+        prankPulse 1.5s ease-in-out infinite;
+}
+
+
+.prank-box p {
+    line-height: 1.6;
+}
+
+
+#prankBtn {
+    margin-top: 20px;
+
+    background: #fff;
+
+    color: #8e4162;
+
+    font-size: 18px;
+
+    animation:
+        prankButtonPulse 1.5s ease-in-out infinite;
+}
+
+
+#prankBtn.clicked {
+    animation: prankShake 0.5s ease;
+}
+
+
+#prankMessage {
+    min-height: 30px;
+
+    margin-top: 20px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    line-height: 1.5;
+}
+
+
+@keyframes prankAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px);
     }
 
-    .final-message {
-        font-size: 17px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 
-    .final-birthday {
-        font-size: 22px;
+}
+
+
+@keyframes prankPulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+@keyframes prankButtonPulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+@keyframes prankShake {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-10px);
+    }
+
+    40% {
+        transform: translateX(10px);
+    }
+
+    60% {
+        transform: translateX(-8px);
+    }
+
+    80% {
+        transform: translateX(8px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+}/* =================================
+   BEST FRIEND AWARD
+================================= */
+
+.award-box {
+    width: min(600px, 95%);
+    margin: 35px auto;
+    padding: 30px 25px;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.13);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.award-box h2 {
+    margin: 15px 0;
+    font-size: 30px;
+}
+
+.award-box h3 {
+    font-size: 28px;
+    margin: 20px 0;
+
+    animation: awardGlow 1.5s ease-in-out infinite;
+}
+
+.award-box p {
+    line-height: 1.7;
+}
+
+#awardBtn {
+    margin-top: 15px;
+
+    background: #fff;
+    color: #8e4162;
+
+    font-size: 18px;
+
+    animation: awardPulse 1.5s ease-in-out infinite;
+}
+
+#awardMessage {
+    min-height: 35px;
+    margin-top: 20px;
+
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+@keyframes awardGlow {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+@keyframes awardPulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}/* =================================
+   AWARD CELEBRATION
+================================= */
+
+#awardCelebration {
+    display: none;
+    text-align: center;
+    margin-top: 25px;
+}
+
+#awardCelebration.show {
+    display: block;
+    animation: celebrationAppear 0.8s ease forwards;
+}
+
+.trophy {
+    font-size: 100px;
+    animation: trophyPop 1.2s cubic-bezier(.17,.67,.35,1.5) forwards;
+    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.3));
+}
+
+.celebration-text {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    animation: celebrationText 0.8s ease 0.5s both;
+}
+
+@keyframes trophyPop {
+
+    0% {
+        transform: scale(0) rotate(-20deg);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.3) rotate(10deg);
+        opacity: 1;
+    }
+
+    80% {
+        transform: scale(0.9) rotate(-5deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+
+}
+
+@keyframes celebrationAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes celebrationText {
+
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}/* =================================
+   AWARD FIRECRACKER EXPLOSION
+================================= */
+
+.award-firecracker {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+
+    animation: firecrackerBurst 1.2s ease-out forwards;
+}
+
+@keyframes firecrackerBurst {
+
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        box-shadow:
+            0 0 10px 3px #fff;
+    }
+
+    100% {
+        transform: translate(
+            calc(-50% + var(--x)),
+            calc(-50% + var(--y))
+        ) scale(0.2);
+
+        opacity: 0;
+
+        box-shadow:
+            0 0 5px 2px #fff;
     }
 
 }
